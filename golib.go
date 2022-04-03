@@ -62,6 +62,18 @@ for scanner.Scan() {
  fmt.Println( scanner.Text())
 }
 
+buf := new(bytes.Buffer)
+u := user{
+    Name: "bob";,
+    Age: 20,
+}
+err := json.NewEncoder(buf).Encode(u)
+if err != nil {
+    panic(err)
+}
+fmt.Print(buf.String())
+
+
 
 /*
 Go中的指针及与指针对指针的操作主要有以下三种：
@@ -71,3 +83,7 @@ Go中的指针及与指针对指针的操作主要有以下三种：
 
 三是unsafe包提供的Pointer，表示可以指向任意类型的指针
 */
+
+go mod init example.com/hello
+go mod edit -replace example.com/greetings=../greetings
+go mod tidy
